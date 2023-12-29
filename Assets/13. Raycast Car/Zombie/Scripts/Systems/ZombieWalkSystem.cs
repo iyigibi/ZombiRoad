@@ -1,4 +1,4 @@
-﻿using Unity.Burst;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -27,15 +27,18 @@ namespace TMG.Zombies
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
             var brainEntity = SystemAPI.GetSingletonEntity<BrainTag>();
             var brainScale = SystemAPI.GetComponent<LocalTransform>(brainEntity).Scale;
-            var brainRadius = brainScale * 5f + 0.5f;
+            var brainRadius = brainScale * 1f + 0.5f;
             var brainPosition= SystemAPI.GetComponent<LocalTransform>(brainEntity).Position;
-
+            var brainForward= SystemAPI.GetComponent<LocalTransform>(brainEntity).Forward();
+            var brainRigth= SystemAPI.GetComponent<LocalTransform>(brainEntity).Right();
             new ZombieWalkJob
             {
                 DeltaTime = deltaTime,
                 BrainRadiusSq = brainRadius * brainRadius,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 brainPosition= brainPosition,
+                brainForward= brainForward,
+                brainRigth= brainRigth
             }.ScheduleParallel();
         }
     }
@@ -47,6 +50,8 @@ namespace TMG.Zombies
         public float BrainRadiusSq;
         public EntityCommandBuffer.ParallelWriter ECB;
         public float3 brainPosition;
+        public float3 brainForward;
+        public float3 brainRigth;
 
 
         [BurstCompile]
@@ -54,7 +59,7 @@ namespace TMG.Zombies
         {
             zombie.Walk(DeltaTime, brainPosition);
 
-            if (zombie.IsInStoppingRange(brainPosition, BrainRadiusSq))
+            if (zombie.IsInStoppingRange(brainPosition, BrainRadiusSq, brainForward, brainRigth))
             {
                 ECB.SetComponentEnabled<ZombieWalkProperties>(sortKey, zombie.Entity, true);
                 ECB.SetComponentEnabled<ZombieEatProperties>(sortKey, zombie.Entity, true);

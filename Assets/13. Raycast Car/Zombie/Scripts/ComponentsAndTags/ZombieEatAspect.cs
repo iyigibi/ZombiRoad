@@ -28,7 +28,7 @@ namespace TMG.Zombies
             set => _zombieTimer.ValueRW.Value = value;
         }
         
-        public void Eat(float deltaTime, EntityCommandBuffer.ParallelWriter ecb, int sortKey, Entity brainEntity)
+        public void Eat(float deltaTime, EntityCommandBuffer.ParallelWriter ecb, int sortKey, Entity brainEntity,Entity zombieEntity)
         {
             ZombieTimer += deltaTime;
             //var eatAngle = EatAmplitude * math.sin(EatFrequency * ZombieTimer);
@@ -38,11 +38,16 @@ namespace TMG.Zombies
            // _velocity.ValueRW.Angular = float3.zero;
           //  _transform.ValueRW.Rotation = quaternion.Euler(0, Heading, 0);
 
-            var eatDamage = EatDamagePerSecond * deltaTime;
+
+
+            var eatDamage = EatDamagePerSecond * deltaTime*0;
             var curBrainDamage = new BrainDamageBufferElement { Value = eatDamage };
             ecb.AppendToBuffer(sortKey, brainEntity, curBrainDamage);
+            ecb.DestroyEntity(sortKey, zombieEntity);
 
-            
+
+
+
         }
         
         public bool IsInEatingRange(float3 brainPosition, float brainRadiusSq)

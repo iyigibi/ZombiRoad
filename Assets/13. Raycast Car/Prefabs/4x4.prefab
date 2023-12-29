@@ -711,8 +711,8 @@ Transform:
   m_GameObject: {fileID: 3054253959112447831}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.01, z: 0}
-  m_LocalScale: {x: 1.7738, y: 0.9130168, z: 3.576263}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0}
+  m_LocalScale: {x: 1.7738, y: 0.5, z: 3.576263}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3054253958753310909}
@@ -732,11 +732,11 @@ MonoBehaviour:
   m_ShapeType: 0
   m_PrimitiveCenter:
     x: 0
-    y: 0.9
+    y: 0.73
     z: 0
   m_PrimitiveSize:
     x: 1
-    y: 1
+    y: 0.62
     z: 1
   m_PrimitiveOrientation:
     Value:
@@ -749,28 +749,28 @@ MonoBehaviour:
     Radius: 0.5
     Axis: 2
   m_Cylinder:
-    Height: 1
+    Height: 0.62
     Radius: 0.5
-    Axis: 2
+    Axis: 1
   m_CylinderSideCount: 20
   m_SphereRadius: 0.5
   m_MinimumSkinnedVertexWeight: 0.1
   m_ConvexHullGenerationParameters:
     m_SimplificationTolerance: 0.015
-    m_BevelRadius: 0.26
+    m_BevelRadius: 0.06
     m_MinimumAngle: 2.5000002
   m_CustomMesh: {fileID: 0}
   m_ForceUnique: 0
   m_Material:
     m_SupportsTemplate: 1
-    m_Template: {fileID: 0}
+    m_Template: {fileID: 11400000, guid: ebef6201e06d8824ea0a30981f27fa66, type: 2}
     m_CollisionResponse:
       m_Override: 0
       m_Value: 0
     m_Friction:
       m_Override: 0
       m_Value:
-        Value: 0.5
+        Value: 0
         CombineMode: 0
     m_Restitution:
       m_Override: 0
@@ -821,7 +821,7 @@ MonoBehaviour:
         Category03: 1
         Category04: 1
         Category05: 1
-        Category06: 0
+        Category06: 1
         Category07: 1
         Category08: 1
         Category09: 1
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054253960425815239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d79d98418b67aa44db932451943018a8, type: 3}
   m_Name: 
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054253960425815239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b275e5f92732148048d7b77e264ac30e, type: 3}
   m_Name: 
@@ -1297,7 +1297,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3054253960425815239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccea9ea98e38942e0b0938c27ed1903e, type: 3}
   m_Name: 
@@ -1406,10 +1406,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveAtStart: 1
-  TopSpeed: 20
+  TopSpeed: 15
   MaxSteeringAngle: 35
-  SteeringDamping: 0.1
-  SpeedDamping: 0.01
+  SteeringDamping: 0.03
+  SpeedDamping: 0.081
   CameraOrbit: {fileID: 3054253959697980418}
   CameraOrientation: 1
   CameraOrbitAngularSpeed: 180
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   wheelFrictionForward: 0.25
   wheelMaxImpulseRight: 1.5
   wheelMaxImpulseForward: 2
-  suspensionLength: 0.5
+  suspensionLength: 1
   suspensionStrength: 1000
   suspensionDamping: 100
   steeringWheels:
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Smoothing: 1
   m_Mass: 1000
   m_LinearDamping: 0.01
-  m_AngularDamping: 0.05
+  m_AngularDamping: 0.5
   m_InitialLinearVelocity:
     x: 0
     y: 0

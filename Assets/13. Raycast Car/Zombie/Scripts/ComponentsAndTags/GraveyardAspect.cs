@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
@@ -82,7 +82,7 @@ namespace TMG.Zombies
             var position = GetRandomZombieSpawnPoint();
             return new LocalTransform
             {
-                Position = position,
+                Position = position+new float3(0,2,0),
                 Rotation = quaternion.RotateY(MathHelpers.GetHeading(position, Transform.Position)),
                 Scale = 1f
             };

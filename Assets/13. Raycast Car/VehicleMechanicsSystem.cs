@@ -263,6 +263,16 @@ namespace RaycastCar
                             world.ApplyImpulse(ceIdx, impulse, wheelPos);
                             world.ApplyImpulse(rayResult.RigidBodyIndex, -impulse, wheelPos);
 
+                            /*
+                            float3 angVelo = world.GetAngularVelocity(ceIdx);
+                            angVelo.x = 0;
+                            angVelo.z = 0;
+                            world.SetAngularVelocity(ceIdx, angVelo);
+
+                            float3 velo = world.GetLinearVelocity(ceIdx);
+                            velo.y = 0;
+                            world.SetLinearVelocity(ceIdx,velo);
+                            */
                             if (mechanics.drawDebugInformation != 0)
                             {
                                 Debug.DrawRay(wheelDesiredPos, impulse, Color.blue);

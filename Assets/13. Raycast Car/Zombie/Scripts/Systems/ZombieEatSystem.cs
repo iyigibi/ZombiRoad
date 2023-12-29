@@ -55,8 +55,8 @@ namespace TMG.Zombies
         {
             if (zombie.IsInEatingRange(brainPosition, BrainRadiusSq))
             {
-                zombie.Eat(DeltaTime, ECB, sortKey, BrainEntity);
-                ECB.DestroyEntity(sortKey,zombie.Entity);
+                zombie.Eat(DeltaTime, ECB, sortKey, BrainEntity,zombie.Entity);
+                
             }
             else
             {

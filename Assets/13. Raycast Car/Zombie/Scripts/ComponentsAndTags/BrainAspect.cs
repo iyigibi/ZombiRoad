@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+using Unity.Entities;
 using Unity.Transforms;
 
 namespace TMG.Zombies
@@ -19,7 +19,7 @@ namespace TMG.Zombies
             }
             _brainDamageBuffer.Clear();
             
-            _transform.ValueRW.Scale = _brainHealth.ValueRO.Value / _brainHealth.ValueRO.Max;
+           // _transform.ValueRW.Scale = _brainHealth.ValueRO.Value / _brainHealth.ValueRO.Max;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.Physics;
@@ -38,9 +38,9 @@ namespace TMG.Zombies
             
             _velocity.ValueRW.Angular = float3.zero;
             _transform.ValueRW.Rotation = quaternion.Euler(0, Heading, 0);
-            if(math.distance(float3.zero, _velocity.ValueRW.Linear) < 50)
+            if(math.distance(float3.zero, _velocity.ValueRW.Linear) < 5)
             {
-                _velocity.ValueRW.Linear += _transform.ValueRO.Forward() * deltaTime*10;
+                _velocity.ValueRW.Linear += _transform.ValueRO.Forward() * deltaTime*5;
             }
             
 
@@ -48,8 +48,25 @@ namespace TMG.Zombies
 
         }
         
-        public bool IsInStoppingRange(float3 brainPosition, float brainRadiusSq)
+        public bool IsInStoppingRange(float3 brainPosition, float brainRadiusSq,float3 bF,float3 bR)
         {
+            /*
+            var __transform = _transform.ValueRO;
+            float zx = __transform.Position.x;
+            float zz = __transform.Position.z;
+            float bx = brainPosition.x;
+            float bz = brainPosition.z;
+            float w = 1;
+            float h = 3;
+            if (zx<bx+h*bF.x && zx>bx-h*bF.x
+                &&
+                zz < bz + h * bF.z && zz > bz - h * bF.z
+                )
+            {
+                return true;
+            }
+            return false;
+            */
             return math.distancesq(brainPosition, _transform.ValueRO.Position) <= brainRadiusSq;
         }
     }
