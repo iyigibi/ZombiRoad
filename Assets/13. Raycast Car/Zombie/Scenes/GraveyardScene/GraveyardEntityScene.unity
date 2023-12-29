@@ -123,6 +123,54 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &185105381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 185105383}
+  - component: {fileID: 185105382}
+  m_Layer: 0
+  m_Name: particlesystemobject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &185105382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185105381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fec92f267f144b2a9235752c228be6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SystemLifeTime: 2
+  particlePrefab: {fileID: 5447027660365299824, guid: 106646575a35646508f1f25788c95d75,
+    type: 3}
+  particleSpawnRate: 0.2
+--- !u!4 &185105383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185105381}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &378582268
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +791,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 378582270}
   - {fileID: 978359207}
+  - {fileID: 185105383}
   - {fileID: 4060013737590227104}
   - {fileID: 1643075407}
   - {fileID: 1591034223}
