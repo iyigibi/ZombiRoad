@@ -1,4 +1,4 @@
-﻿using Unity.Burst;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace TMG.Zombies
@@ -43,7 +43,7 @@ namespace TMG.Zombies
         private void Execute(GraveyardAspect graveyard)
         {
             graveyard.ZombieSpawnTimer -= DeltaTime;
-            //if(!graveyard.TimeToSpawnZombie) return;
+            if(!graveyard.TimeToSpawnZombie) return;
             if(!graveyard.ZombieSpawnPointInitialized()) return;
             
             graveyard.ZombieSpawnTimer = graveyard.ZombieSpawnRate;

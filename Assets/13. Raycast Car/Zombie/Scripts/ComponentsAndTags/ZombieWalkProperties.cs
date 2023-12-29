@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+using Unity.Entities;
 
 namespace TMG.Zombies
 {
@@ -14,6 +14,7 @@ namespace TMG.Zombies
         public float EatDamagePerSecond;
         public float EatAmplitude;
         public float EatFrequency;
+        public Entity deathVFXprefab;
     }
     
     public struct ZombieTimer : IComponentData

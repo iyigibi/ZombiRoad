@@ -28,6 +28,7 @@ namespace TMG.Zombies
             var brainEntity = SystemAPI.GetSingletonEntity<BrainTag>();
             var brainScale = SystemAPI.GetComponent<LocalTransform>(brainEntity).Scale;
             var brainPosition= SystemAPI.GetComponent<LocalTransform>(brainEntity).Position;
+            
             var brainRadius = brainScale * 5f + 1f;
             
             new ZombieEatJob
@@ -55,7 +56,7 @@ namespace TMG.Zombies
         {
             if (zombie.IsInEatingRange(brainPosition, BrainRadiusSq))
             {
-                zombie.Eat(DeltaTime, ECB, sortKey, BrainEntity,zombie.Entity);
+                zombie.Eat(DeltaTime, ECB, sortKey, BrainEntity,zombie.Entity, zombie.GetDeathVFXprefab());
                 
             }
             else

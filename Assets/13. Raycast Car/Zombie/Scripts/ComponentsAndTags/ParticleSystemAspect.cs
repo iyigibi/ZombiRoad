@@ -23,6 +23,8 @@ namespace TMG.Zombies
         public Entity ParticlePrefab => _particleSystemProperties.ValueRO.ParticlePrefab;
 
 
+
+
         public float SpawnTimer
         {
             get => _SpawnTimer.ValueRO.Value;
@@ -37,6 +39,11 @@ namespace TMG.Zombies
         {
             get => _transform.ValueRO.Position;
             set => _transform.ValueRW.Position = value;
+        }
+
+        public void liveAWhile(float deltaTime)
+        {
+
         }
 
         public quaternion GetRandomRotation()

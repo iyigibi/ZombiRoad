@@ -27,8 +27,11 @@ namespace TMG.Zombies
             get => _zombieTimer.ValueRO.Value;
             set => _zombieTimer.ValueRW.Value = value;
         }
-        
-        public void Eat(float deltaTime, EntityCommandBuffer.ParallelWriter ecb, int sortKey, Entity brainEntity,Entity zombieEntity)
+        public Entity GetDeathVFXprefab()
+        {
+            return _eatProperties.ValueRO.deathVFXprefab;
+        }
+        public void Eat(float deltaTime, EntityCommandBuffer.ParallelWriter ecb, int sortKey, Entity brainEntity,Entity zombieEntity,Entity deathVFXprefab)
         {
             ZombieTimer += deltaTime;
             //var eatAngle = EatAmplitude * math.sin(EatFrequency * ZombieTimer);
@@ -43,8 +46,17 @@ namespace TMG.Zombies
             var eatDamage = EatDamagePerSecond * deltaTime*0;
             var curBrainDamage = new BrainDamageBufferElement { Value = eatDamage };
             ecb.AppendToBuffer(sortKey, brainEntity, curBrainDamage);
+            
             ecb.DestroyEntity(sortKey, zombieEntity);
 
+
+            var newVFX = ecb.Instantiate(sortKey, deathVFXprefab);
+
+            var trans = new Unity.Transforms.LocalTransform();
+            trans.Position = _transform.ValueRO.Position;
+            trans.Rotation = _transform.ValueRO.Rotation;
+            trans.Scale = 1;
+            ecb.SetComponent(sortKey,newVFX, trans);
 
 
 

@@ -26,13 +26,14 @@ namespace TMG.Zombies
             ParticleTimer += deltaTime;
             if (Gravity)
             {
-                _transform.ValueRW.Position.y += (1 - math.pow(ParticleTimer * 2 - 1, 2)) * deltaTime * ParticleSpeed;
+                // _transform.ValueRW.Position.y += (1 - math.pow(ParticleTimer * 2 - 1, 2)) * deltaTime * ParticleSpeed;
+                _transform.ValueRW.Position.y += (15 - 75*ParticleTimer) * deltaTime;
                 _transform.ValueRW.Position.x += (_transform.ValueRO.Up() * deltaTime * ParticleSpeed).x;
                 _transform.ValueRW.Position.z += (_transform.ValueRO.Up() * deltaTime * ParticleSpeed).z;
             }
             else
                 _transform.ValueRW.Position += _transform.ValueRO.Up() * ParticleSpeed * deltaTime;
-            _transform.ValueRW.Scale = ParticleTimer *.1f;
+            _transform.ValueRW.Scale = (0.5f+ParticleTimer) *.06f;
         }
 
 

@@ -54,6 +54,8 @@ MonoBehaviour:
   EatDamage: 1
   EatAmplitude: 0.2
   EatFrequency: 10
+  deathVFXprefab: {fileID: 8304536904726703745, guid: a0e55315cde764946946f6e5b8764838,
+    type: 3}
 --- !u!114 &-4519339933862649408
 MonoBehaviour:
   m_ObjectHideFlags: 0

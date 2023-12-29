@@ -1,4 +1,4 @@
-﻿using Unity.Entities;
+using Unity.Entities;
 using UnityEngine;
 
 namespace TMG.Zombies
@@ -13,6 +13,8 @@ namespace TMG.Zombies
         public float EatDamage;
         public float EatAmplitude;
         public float EatFrequency;
+
+        public GameObject deathVFXprefab;
     }
 
     public class ZombieBaker : Baker<ZombieMono>
@@ -32,7 +34,8 @@ namespace TMG.Zombies
             {
                 EatDamagePerSecond = authoring.EatDamage,
                 EatAmplitude = authoring.EatAmplitude,
-                EatFrequency = authoring.EatFrequency
+                EatFrequency = authoring.EatFrequency,
+                deathVFXprefab = GetEntity(authoring.deathVFXprefab, TransformUsageFlags.Dynamic),
             });
             AddComponent<ZombieTimer>(zombieEntity);
             AddComponent<ZombieHeading>(zombieEntity);

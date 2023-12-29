@@ -63,6 +63,10 @@ namespace TMG.Zombies
             trans.Rotation = particleSystem.GetRandomRotation();
             trans.Scale = 1;
             ECB.SetComponent(newParticle, trans);
+            if (particleSystem.Timer > 0.5f)
+            {
+                ECB.DestroyEntity(particleSystem.Entity);
+            }
 
         }
     }
