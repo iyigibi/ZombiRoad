@@ -26,19 +26,14 @@ namespace TMG.Zombies
             var deltaTime = SystemAPI.Time.DeltaTime;
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
             var brainEntity = SystemAPI.GetSingletonEntity<BrainTag>();
-            var brainScale = SystemAPI.GetComponent<LocalTransform>(brainEntity).Scale;
-            var brainRadius = brainScale * 1f + 0.5f;
             var brainPosition= SystemAPI.GetComponent<LocalTransform>(brainEntity).Position;
-            var brainForward= SystemAPI.GetComponent<LocalTransform>(brainEntity).Forward();
-            var brainRigth= SystemAPI.GetComponent<LocalTransform>(brainEntity).Right();
+            var carRotation = SystemAPI.GetComponent<LocalTransform>(brainEntity).Rotation;
             new ZombieWalkJob
             {
                 DeltaTime = deltaTime,
-                BrainRadiusSq = brainRadius * brainRadius,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter(),
                 brainPosition= brainPosition,
-                brainForward= brainForward,
-                brainRigth= brainRigth
+                carRotation = carRotation
             }.ScheduleParallel();
         }
     }
@@ -47,11 +42,9 @@ namespace TMG.Zombies
     public partial struct ZombieWalkJob : IJobEntity
     {
         public float DeltaTime;
-        public float BrainRadiusSq;
         public EntityCommandBuffer.ParallelWriter ECB;
         public float3 brainPosition;
-        public float3 brainForward;
-        public float3 brainRigth;
+        public quaternion carRotation;
 
 
         [BurstCompile]
@@ -59,7 +52,7 @@ namespace TMG.Zombies
         {
             zombie.Walk(DeltaTime, brainPosition);
 
-            if (zombie.IsInStoppingRange(brainPosition, BrainRadiusSq, brainForward, brainRigth))
+            if (zombie.IsInStoppingRange(brainPosition, carRotation))
             {
                 ECB.SetComponentEnabled<ZombieWalkProperties>(sortKey, zombie.Entity, true);
                 ECB.SetComponentEnabled<ZombieEatProperties>(sortKey, zombie.Entity, true);

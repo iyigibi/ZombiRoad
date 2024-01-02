@@ -48,26 +48,28 @@ namespace TMG.Zombies
 
         }
         
-        public bool IsInStoppingRange(float3 brainPosition, float brainRadiusSq,float3 bF,float3 bR)
+        public bool IsInStoppingRange(float3 brainPosition,quaternion carRotation)
         {
-            /*
-            var __transform = _transform.ValueRO;
-            float zx = __transform.Position.x;
-            float zz = __transform.Position.z;
-            float bx = brainPosition.x;
-            float bz = brainPosition.z;
-            float w = 1;
-            float h = 3;
-            if (zx<bx+h*bF.x && zx>bx-h*bF.x
-                &&
-                zz < bz + h * bF.z && zz > bz - h * bF.z
-                )
-            {
-                return true;
-            }
-            return false;
-            */
-            return math.distancesq(brainPosition, _transform.ValueRO.Position) <= brainRadiusSq;
+
+            float halfWidth =  1.5f;
+            float halfLength =  3f;
+            var zombiePosition = _transform.ValueRO.Position;
+
+
+            float4x4 rotationMatrix = float4x4.TRS(float3.zero, carRotation,new float3(1.0f, 1.0f, 1.0f));
+
+            float4x4 inverseRotationMatrix = math.inverse(rotationMatrix);
+
+            float3 relativeZombiePosition = zombiePosition - brainPosition;
+
+            float3 rotatedZombiePosition = math.mul(inverseRotationMatrix, new float4(relativeZombiePosition, 1.0f)).xyz;
+
+            return math.abs(rotatedZombiePosition.x) < halfWidth && math.abs(rotatedZombiePosition.z) < halfLength;
+
+
+            //return false;
+
+            //return math.distancesq(brainPosition, _transform.ValueRO.Position) <= brainRadiusSq;
         }
     }
 }
